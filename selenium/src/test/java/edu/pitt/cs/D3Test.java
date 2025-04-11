@@ -39,7 +39,10 @@ public class D3Test {
 
     @Before
     public void setUp() {
-        driver = new FirefoxDriver();
+        // driver = new FirefoxDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
         js = (JavascriptExecutor) driver;
         vars = new HashMap<String, Object>();
     }
@@ -60,7 +63,7 @@ public class D3Test {
             String attribute = element.getAttribute("href");
             vars.put("hrefValue", attribute);
         }
-        assertEquals(vars.get("hrefValue").toString(), "https://cs1632.appspot.com/reset");
+        assertEquals(vars.get("hrefValue").toString(), "http://localhost:8080/reset");
     }
 
     @Test
@@ -108,7 +111,7 @@ public class D3Test {
             String attribute = element.getAttribute("src");
             vars.put("imageSrc", attribute);
         }
-        assertEquals(vars.get("imageSrc").toString(), "https://cs1632.appspot.com/images/cat2.jpg");
+        assertEquals(vars.get("imageSrc").toString(), "http://localhost:8080/images/cat2.jpg");
     }
 
     @Test
